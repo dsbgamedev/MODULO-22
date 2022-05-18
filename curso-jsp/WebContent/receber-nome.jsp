@@ -4,26 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Curso JSP</title>
+<title>Insert title here</title>
 </head>
 <body>
 
-<h1>Bem vindo ao curso de JPS</h1>
-
 <%
+String nome = request.getParameter("nome");
+out.println("Nome:" + nome);
 
+String idade = request.getParameter("idade");
+out.println("Idade:" + idade);
 
-%> 
-
-<form action="receber-nome.jsp">
-
-<input name="nome">
-<input name="idade">
-
-<input type="submit" value="Enviar">
-
-</form>
-
-
+%>
 </body>
 </html>
