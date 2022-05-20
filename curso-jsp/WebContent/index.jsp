@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +12,8 @@
 
 <h1>Bem vindo ao curso de JPS</h1>
 
-<%
 
-
-%> 
-
-<form action="receber-nome.jsp">
+<form action="Login" method="post">
 
 <input name="nome">
 <input name="idade">

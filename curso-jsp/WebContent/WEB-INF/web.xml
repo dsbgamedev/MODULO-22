@@ -4,4 +4,24 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ServletLogin</display-name>
+    <servlet-name>ServletLogin</servlet-name>
+    <servlet-class>servlets.ServletLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLogin</servlet-name>
+    <url-pattern>/ServletLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>servlets.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
 </web-app>
