@@ -24,6 +24,6 @@
 		</tr>
 	</table>
 	</form>
-	<h4>${msg}</h4><!-- comando para pegar um atributo ${} -->
+	<h4>${msg}</h4>
 </body>
 </html>
