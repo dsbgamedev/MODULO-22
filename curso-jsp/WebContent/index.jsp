@@ -9,11 +9,15 @@
 </head>
 <body>
 
-<h1>Bem viNDO ao curso de JPS</h1>
-<%
-out.print("Seu sucesso garantido");
+<h1>Bem vindo ao curso de JPS</h1>
 
-%>
+
+<form action="receber-nome.jsp">
+<input name="nome">
+<input name="idade">
+
+<input type="submit" value="Enviar">
+</form>
 
 
 </body>
