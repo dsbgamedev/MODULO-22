@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h1>Bem vindo ao curso de JPS</h1>
+<h1>Bem viNDO ao curso de JPS</h1>
 <%
 out.print("Seu sucesso garantido");
 
