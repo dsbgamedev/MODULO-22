@@ -8,15 +8,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
-
-
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/ServletLogin")/*Mapeamento de URL que vem da tela*/
+public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-    public Login() {
+    public ServletLogin() {
       
     }
     /*Recebe os dados pela url em paramentros*/
