@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -34,6 +35,17 @@ public class FilterAutenticacao extends HttpFilter {
 		HttpServletRequest req =  (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		String usuarioLogado = (String) session.getAttribute("usuario");
+		String urlParaAutenticar = req.getServletPath();/*url que esta sendo acessada*/
+		
+		/*Validar se esta logado, senao redireciona ara a tela de login*/
+
+		if(usuarioLogado == null || (usuarioLogado != null && usuarioLogado.isEmpty())&&
+				!urlParaAutenticar.contains("ServletLogin")) {/*Não esta logado*/
+			RequestDispatcher redireciona = request.getRequestDispatcher("/index.jsp?url=" + urlParaAutenticar);
+			request.setAttribute("msg", "Por favor realize o login");
+			redireciona.forward(request, response);
+			return;/*Para a execução redireciona para o login*/
+		}
 		
 		chain.doFilter(request, response);
 	}

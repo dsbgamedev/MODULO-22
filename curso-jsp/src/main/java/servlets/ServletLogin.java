@@ -30,6 +30,7 @@ public class ServletLogin extends HttpServlet {
 		
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		String url = request.getParameter("url");
 
 		if(login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
 			
@@ -42,8 +43,13 @@ public class ServletLogin extends HttpServlet {
 				
 				request.getSession().setAttribute("usuario", modelLogin);
 				
-				RequestDispatcher redirecionar = request.getRequestDispatcher("principal/principal.jsp");
+				RequestDispatcher redirecionar = request.getRequestDispatcher("url");
 				redirecionar.forward(request, response);
+				
+				if(url == null || url.equals("null")) {
+					url = "principal/principal.jsp";
+				}
+				
 			}else {
 				RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
 				request.setAttribute("msg", "Informe o login e senha corretamente!");
