@@ -1,0 +1,67 @@
+CREATE DATABASE "curso-jsp"
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Portuguese_Brazil.1252'
+       LC_CTYPE = 'Portuguese_Brazil.1252'
+       CONNECTION LIMIT = -1;
+
+
+
+CREATE TABLE public.model_login
+(
+  login character varying(200),
+  senha character varying(200),
+  CONSTRAINT login_unique UNIQUE (login)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.model_login
+  OWNER TO postgres;
+  
+  INSERT INTO public.model_login(
+            login, senha)
+    VALUES ('admin', 'admin');
+  
+  
+--------------------------------------------------------------  
+  Criando uma sequencia no banco de dados exemplo de ID
+--------------------------------------------------------------
+CREATE SEQUENCE user_telefone_seq
+   increment 1
+   minvalue 1
+   maxvalue 922337203685477807
+   start 1;
+   CACHE 1;
+ALTER TABLE user_telefone_seq 
+OWNER TO postgres;
+--------------------------------------------------------------
+alter table userposjava ALTER column id set default nextval('usersequence'::regclass);
+--------------------------------------------------------------
+Criando uma tabela
+
+create table telefoneuser
+(
+id bigint not null, 
+numero character varying (255) not null,
+tipo character varying (255) not null,
+usuariopessoa bigint not null,
+constraint telefone_id primary key (id));
+--------------------------------------------------------------
+Relacionamento um para muitos
+
+alter table telefoneuser add foreign key (usuariopessoa) references userposjava(id);
+--------------------------------------------------------------
+Consulta dados da tabelas para consulta inner join
+
+select * from telefoneuser as fone inner join userjava as userp on fone.usuariopessoa = userp.id
+
+where userp.id = 15 //traz apenas o usuario numero 15
+
+--------------------------------------------------------------
+
+
+
+  
+  
