@@ -2,6 +2,7 @@ package filter;
 
 import java.io.IOException;
 
+import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.RequestDispatcher;
@@ -9,15 +10,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = {"/principal/*"})/*Intercepta todas as requisições que vierem do projeto ou mapeamento */
-public class FilterAutenticacao extends HttpFilter {
+public class FilterAutenticacao implements Filter{
         
     public FilterAutenticacao() {
-        super();
+        
     }
 	
     /*Encerra os processo quando o servidor é parado*/
@@ -39,15 +39,17 @@ public class FilterAutenticacao extends HttpFilter {
 		
 		/*Validar se esta logado, senao redireciona ara a tela de login*/
 
-		if(usuarioLogado == null || (usuarioLogado != null && usuarioLogado.isEmpty())&&
-				!urlParaAutenticar.contains("ServletLogin")) {/*Não esta logado*/
+		if(usuarioLogado == null &&	!urlParaAutenticar.equalsIgnoreCase("/principal/ServletLogin")) {/*Não esta logado*/
 			RequestDispatcher redireciona = request.getRequestDispatcher("/index.jsp?url=" + urlParaAutenticar);
 			request.setAttribute("msg", "Por favor realize o login");
 			redireciona.forward(request, response);
+		
 			return;/*Para a execução redireciona para o login*/
+		}else {
+			chain.doFilter(request, response);
 		}
 		
-		chain.doFilter(request, response);
+		
 	}
 	/*Inicia os processos ou recursos quando o servidor sobe o projeto*/
 	//Iniciar a conexão com o banco
